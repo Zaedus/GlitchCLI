@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const yargs = require('yargs')
 
@@ -8,7 +9,7 @@ const files = fs.readdirSync('./commands/').map(c => c.substring(0, c.length - 3
 
 for(file of files) {
     const cmd = require(`./commands/${file}`);
-    yargs.command(file, cmd.description, empty, call)
+    yargs.command(cmd.name, cmd.description, cmd.args ? cmd.args : empty, call)
 }
 
 yargs

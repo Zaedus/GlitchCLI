@@ -1,7 +1,8 @@
 const Glitch = require('glitchapi.js');
+const chalk = require('chalk');
+
 const { getValue } = require('../utils/input');
 const { login }  = require('../utils/login');
-const chalk = require('chalk');
 
 const domainRegex = new RegExp(/^[a-z0-9-]+$/);
 
@@ -38,15 +39,16 @@ module.exports.run = async (argv) => {
         private = await getValue("Private", "n");
     }
     private = private == "y";
-    
+
     user.remix(base, {
         description, domain, private
     }).catch(c => {
-        console.log(chalk.red("Unable to create project."))
+        console.log(chalk.red("\nUnable to create project."))
         console.log(c);
     })
     .then(c => {
-        console.log(chalk`{green Project successfully created!}\nhttps://glitch.com/~${c.domain}`);
+        console.log(chalk`\n{green Project successfully created!}\nhttps://glitch.com/~${c.domain}`);
     })
 }
 module.exports.description = "Initilizes a project.";
+module.exports.name = "init"

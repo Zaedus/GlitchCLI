@@ -8,7 +8,8 @@ export function login() : Promise<Me> {
         me.on("ready", () => {
             res(me);
         })
-
-        me.signin(await keytar.getPassword("glitchcli", "code")).catch(rej);
+        const key = await keytar.getPassword("glitchcli", "code");
+        if(!key) throw "No logged in user.";
+        me.signin(key).catch(rej);
     })
 }

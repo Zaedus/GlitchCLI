@@ -1,7 +1,8 @@
 const Glitch = require('glitchapi.js');
-const input = require('../utils/input');
 const keytar = require('keytar');
 const chalk = require('chalk');
+
+const input = require('../utils/input');
 
 function getCode(email) {
     return new Promise((res, rej) => {
@@ -9,7 +10,21 @@ function getCode(email) {
     })
 }
 
+function login(value) {
+    const me = new Glitch.Me();
+
+    me.on("ready", () => {
+        keytar.setPassword("glitchcli", "code", value);
+        console.log(chalk.green(`Succesfully logged in as ${me.name} (@${me.login})`));
+    })
+
+    me.signin(value).catch(e => {
+        console.log(chalk.red("Login failed."));
+    });
+}
+
 module.exports.run = async (argv) => {
+    if(typeof argv.code == "string") return login(argv.code); 
     var email = await input.getValue("Email");
     var code = await getCode(email)
     while(code.status != 200) {
@@ -21,16 +36,7 @@ module.exports.run = async (argv) => {
 
     var value = await input.getValue("Paste your code here");
     
-    const me = new Glitch.Me();
-
-    me.on("ready", () => {
-        keytar.setPassword("glitchcli", "code", value);
-        console.log(chalk.green(`Succesfully logged in as ${me.name} (@${me.login})`));
-    })
-
-    me.signin(value).catch(e => {
-        console.log(chalk.red("Login failed."));
-    });
-
+    login(value);
 }
 module.exports.description = "Creates a user to be used later.";
+module.exports.name = "login [code]"

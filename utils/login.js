@@ -41,18 +41,20 @@ var keytar = require('keytar');
 function login() {
     var _this = this;
     return new Promise(function (res, rej) { return __awaiter(_this, void 0, void 0, function () {
-        var me, _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
+        var me, key;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
                     me = new glitchapi_js_1.Me();
                     me.on("ready", function () {
                         res(me);
                     });
-                    _b = (_a = me).signin;
                     return [4 /*yield*/, keytar.getPassword("glitchcli", "code")];
                 case 1:
-                    _b.apply(_a, [_c.sent()])["catch"](rej);
+                    key = _a.sent();
+                    if (!key)
+                        throw "No logged in user.";
+                    me.signin(key)["catch"](rej);
                     return [2 /*return*/];
             }
         });
