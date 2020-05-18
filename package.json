@@ -1,0 +1,35 @@
+{
+  "name": "glitchcli",
+  "version": "1.0.0",
+  "description": "A CLI for glitch.com",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NintendoZaedus/GlitchCLI.git"
+  },
+  "keywords": [
+    "glitchcli",
+    "glitch",
+    "website",
+    "glitch-com"
+  ],
+  "author": "Zaedus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NintendoZaedus/GlitchCLI/issues"
+  },
+  "homepage": "https://github.com/NintendoZaedus/GlitchCLI#readme",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "glitchapi.js": "^1.0.6",
+    "keytar": "^5.6.0",
+    "terminal-kit": "^1.35.2",
+    "yargs": "^15.3.1"
+  },
+  "bin": {
+    "glitch": "main.js"
+  }
+}
