@@ -1,6 +1,6 @@
 {
   "name": "glitchcmd",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A CLI for glitch.com",
   "main": "main.js",
   "scripts": {
