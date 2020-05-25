@@ -9,7 +9,8 @@ export function login() : Promise<Me> {
             res(me);
         })
         const key = await keytar.getPassword("glitchcli", "code");
-        if(!key) throw "No logged in user.";
+        console.log(key)
+        if(!key) return rej("No logged in user.");
         me.signin(key).catch(rej);
     })
 }

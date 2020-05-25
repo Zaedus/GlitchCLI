@@ -42,13 +42,15 @@ module.exports.run = async (argv) => {
 
     user.remix(base, {
         description, domain, private
-    }).catch(c => {
-        console.log(chalk.red("\nUnable to create project."))
-        console.log(c);
     })
     .then(c => {
         console.log(chalk`\n{green Project successfully created!}\nhttps://glitch.com/~${c.domain}`);
     })
+    .catch(c => {
+        console.log(chalk.red("\nUnable to create project."))
+        console.log(c);
+    })
+    
 }
 module.exports.description = "Initilizes a project.";
 module.exports.name = "init"
