@@ -16,4 +16,12 @@ yargs
   .scriptName("glitch")
   .usage('$0 <cmd> [args]')
   .demandCommand().recommendCommands().strict()
+  .example("glitch init", "Creates a new project.")
+  .example("glitch login", "Login with login code.")
+  .example("glitch logout", "Remove login code.")
+  .example("glitch me projects", "Lists all projects")
+  .example("glitch me projects edit <name>", "Edits the given project.")
+  .example("glitch me projects delete <name>", "Deletes the given project.")
+  .example("glitch get @<name | id>", "Gets the given user by name or id.")
+  .example("glitch get #<domain | id>", "Gets the given project by name or id.")
   .help().argv
